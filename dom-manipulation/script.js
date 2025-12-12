@@ -143,6 +143,16 @@ try {
 console.error("POST failed", err);
 }
 }
+async function fetchServerQuotes() {
+try {
+const res = await fetch(SERVER_URL);
+const data = await res.json();
+
+
+const serverQuotes = data.slice(0, 5).map(item => ({
+text: item.title,
+category: "Server"
+}));
 
     // Server takes precedence
     quotes = [...serverQuotes, ...quotes];
