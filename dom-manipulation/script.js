@@ -160,7 +160,7 @@ async function fetchQuotesFromServer() {
     saveQuotes();
     populateCategories();
 
-    alert("Server sync completed!");
+    alert("Quotes synced with server!");
 
   } catch (err) {
     console.log("Server sync failed:", err);
@@ -175,6 +175,7 @@ setInterval(fetchQuotesFromServer, 30000);
 // ---------------------------
 populateCategories();
 showRandomQuote();
+
 
 
 
