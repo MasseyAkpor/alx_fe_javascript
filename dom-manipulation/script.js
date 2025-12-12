@@ -128,16 +128,21 @@ function importFromJsonFile(event) {
 // ---------------------------
 // SERVER SYNC SIMULATION
 // ---------------------------
-async function fetchQuotesFromServer() {
-  try {
-    const serverData = await fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json());
-
-    // Convert fake server data into quote objects
-    const serverQuotes = serverData.slice(0, 5).map(post => ({
-      text: post.title,
-      category: "Server"
-    }));
+async function postQuoteToServer(quote) {
+try {
+  const res = await fetch(SERVER_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(quote)
+    });
+  const data = await res.json();
+  console.log("Quote posted to server:", data);
+  } catch (err) {
+console.error("POST failed", err);
+}
+}
 
     // Server takes precedence
     quotes = [...serverQuotes, ...quotes];
@@ -159,4 +164,5 @@ setInterval(fetchQuotesFromServer, 30000);
 // ---------------------------
 populateCategories();
 showRandomQuote();
+
 
