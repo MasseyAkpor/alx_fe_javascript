@@ -51,7 +51,7 @@ document.getElementById("newQuote").addEventListener("click", showRandomQuote);
 // ---------------------------
 // ADD NEW QUOTE
 // ---------------------------
-function syncQuotes() {
+function createAddQuoteForm() {
   const text = document.getElementById("newQuoteText").value.trim();
   const category = document.getElementById("newQuoteCategory").value.trim();
 
@@ -175,6 +175,7 @@ setInterval(fetchQuotesFromServer, 30000);
 // ---------------------------
 populateCategories();
 showRandomQuote();
+
 
 
 
